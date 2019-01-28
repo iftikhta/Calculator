@@ -9,6 +9,26 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+    <Grid.RowDefinitions>
+        <RowDefinition></RowDefinition>
+        <RowDefinition></RowDefinition>
+        <RowDefinition></RowDefinition>
+        <RowDefinition></RowDefinition>
+        <RowDefinition></RowDefinition>
+        <RowDefinition></RowDefinition>
+        <RowDefinition></RowDefinition>
+     </Grid.RowDefinitions>
+
+
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition></ColumnDefinition>
+        <ColumnDefinition></ColumnDefinition>
+        <ColumnDefinition></ColumnDefinition>
+        <ColumnDefinition></ColumnDefinition>
+
+    </Grid.ColumnDefinitions>
+        <TextBlock HorizontalAlignment="Stretch" Text ="Block1" VerticalAlignment="Stretch"  Grid.ColumnSpan="4"  Grid.Row="0" />
+        <TextBlock HorizontalAlignment="Stretch" Text="Block2" VerticalAlignment="Stretch"  Grid.ColumnSpan="4"  Grid.Row="1" />
 
     </Grid>
 </Page>
