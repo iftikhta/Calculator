@@ -28,13 +28,13 @@
 
         </Grid.ColumnDefinitions>
         <TextBlock HorizontalAlignment="Stretch" Text ="Block1" VerticalAlignment="Stretch"  Grid.ColumnSpan="4"  Grid.Row="0" TextAlignment="Right" />
-        <TextBlock HorizontalAlignment="Stretch" Text="Block2" VerticalAlignment="Stretch"  Grid.ColumnSpan="4"  Grid.Row="1" TextAlignment="Right" />
+        <TextBlock HorizontalAlignment="Stretch" Text="Block2" VerticalAlignment="Stretch"  Grid.ColumnSpan="4"  Grid.Row="1" TextAlignment="Right" SelectionChanged="TextBlock_SelectionChanged" />
         <Button Content="CE" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Row="2"  Grid.ColumnSpan="1" Click="Button_Click" FontSize="72" />
         <Button Content="C" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Row="2"  Grid.ColumnSpan="1" Margin="0,0,0,0" Grid.Column="1" FontSize="72" />
         <Button Content="&lt;-" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Row="2" Grid.Column="2" FontSize="72" />
         <Button Content="/" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Row="2" Grid.Column="3" Click="Button_Click_1" FontSize="72" />
-        <Button Content="7" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Row="3" Margin="0,0,0,0" />
-        <Button Content="8" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Row="3" Grid.Column="1" Margin="0,0,0,0" />
+        <Button Content="7" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Row="3" Margin="0,0,0,0" FontSize="72" />
+        <Button Content="8" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Row="3" Grid.Column="1" Margin="0,0,0,0" FontSize="72" />
         <Button Content="9" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Row="3" Grid.Column="2" Margin="0,0,0,0" FontSize="72" />
         <Button Content="X" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Row="3" Grid.Column="3" Margin="0,0,0,0" FontSize="72" />
         <Button Content="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Row="4" FontSize="72"/>

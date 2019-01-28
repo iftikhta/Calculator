@@ -41,5 +41,10 @@ namespace Assignment1Calculator
         {
 
         }
+
+        private void TextBlock_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
