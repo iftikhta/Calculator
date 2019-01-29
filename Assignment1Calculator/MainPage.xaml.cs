@@ -23,7 +23,10 @@ namespace Assignment1Calculator
 
     public sealed partial class MainPage : Page
     {
+        //last clicked operator
         String status = "";
+
+        // temporary storage 
         String temp = "";
 
         public MainPage()
@@ -57,7 +60,7 @@ namespace Assignment1Calculator
             //string newVar = userInp.Parse(userInp.Text); This does not work, took me a an embarssing amount of time to get this right
             if (status != "")
             {
-                headInp.Text = temp;
+               // headInp.Text = temp;
                 userInp.Text = "";
                 status = "";
             }
@@ -68,7 +71,7 @@ namespace Assignment1Calculator
         {
             if (status != "")
             {
-                headInp.Text = temp;
+               // headInp.Text = temp;
                 userInp.Text = "";
                 status = "";
             }
@@ -79,7 +82,7 @@ namespace Assignment1Calculator
         {
             if (status != "")
             {
-                headInp.Text = temp;
+               // headInp.Text = temp;
                 userInp.Text = "";
                 status = "";
             }
@@ -90,7 +93,7 @@ namespace Assignment1Calculator
         {
             if (status != "")
             {
-                headInp.Text = temp;
+               // headInp.Text = temp;
                 userInp.Text = "";
                 status = "";
             }
@@ -102,7 +105,7 @@ namespace Assignment1Calculator
         {
             if (status != "")
             {
-                headInp.Text = temp;
+               // headInp.Text = temp;
                 userInp.Text = "";
                 status = "";
             }
@@ -113,7 +116,7 @@ namespace Assignment1Calculator
         {
             if (status != "")
             {
-                headInp.Text = temp;
+               // headInp.Text = temp;
                 userInp.Text = "";
                 status = "";
             }
@@ -125,7 +128,7 @@ namespace Assignment1Calculator
         {
             if (status != "")
             {
-                headInp.Text = temp;
+               // headInp.Text = temp;
                 userInp.Text = "";
                 status = "";
             }
@@ -136,7 +139,7 @@ namespace Assignment1Calculator
         {
             if (status != "")
             {
-                headInp.Text = temp;
+                //headInp.Text = temp;
                 userInp.Text = "";
                 status = "";
             }
@@ -147,7 +150,7 @@ namespace Assignment1Calculator
         {
             if (status != "")
             {
-                headInp.Text = temp;
+                //headInp.Text = temp;
                 userInp.Text = "";
                 status = "";
             }
@@ -158,7 +161,7 @@ namespace Assignment1Calculator
         {
             if (status != "")
             {
-                headInp.Text = temp;
+                //headInp.Text = temp;
                 userInp.Text = "";
                 status = "";
             }
@@ -191,8 +194,18 @@ namespace Assignment1Calculator
 
         private void Plus_Click(object sender, RoutedEventArgs e)
         {
-            temp = userInp.Text + " +";
-            status = "+";
+            String[] lencheck = headInp.Text.Split(' ');
+            if (lencheck.Length > 1)
+            {
+                headInp.Text = $"{headInp.Text} {userInp.Text} +";
+                status = "+";
+            }
+            else
+            {
+                temp = userInp.Text + " +";
+                headInp.Text += temp;
+                status = "+";
+            }
         }
 
         private void Equals_Click(object sender, RoutedEventArgs e)
@@ -202,7 +215,22 @@ namespace Assignment1Calculator
 
             if (status == "=")
             {
+         
+
             }
+
+            // must fix equal sign click,it consantly breaks format after the first useage
+           /* else if (userInp.Text.Length == 1 && headInp.Text =="")
+            {
+                if (status == "+")
+                {
+                    headInp.Text = $"{userInp.Text} + {userInp.Text}";
+                    userInp.Text = Convert.ToString(Convert.ToDecimal(userInp.Text)+ Convert.ToDecimal(userInp.Text));
+                    status = "=";
+                }
+            }*/
+           
+            
             else
             {
             headInp.Text = headInp.Text + ' ' + userInp.Text;
