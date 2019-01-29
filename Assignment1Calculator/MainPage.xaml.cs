@@ -200,46 +200,51 @@ namespace Assignment1Calculator
 
             // must ad an if status = "=", then do nothing type of code here to prevent repeated spam of +
 
-
-            headInp.Text = headInp.Text + ' ' + userInp.Text;
-            String[] tempTotal = headInp.Text.Split(' ');
-            for (int i = 0; i < tempTotal.Length; i++)
+            if (status == "=")
             {
-                if (tempTotal[i] == "+")
-                {
-                    Decimal tempNum1 = Convert.ToDecimal(tempTotal[i-1]);
-                    Decimal tempNum2 = Convert.ToDecimal(tempTotal[i + 1]);
-                    Decimal total = tempNum1 + tempNum2;
-                    userInp.Text = Convert.ToString(total);
-
-                }
-                else if (tempTotal[i] == "-")
-                {
-                    Decimal tempNum1 = Convert.ToDecimal(tempTotal[i - 1]);
-                    Decimal tempNum2 = Convert.ToDecimal(tempTotal[i + 1]);
-                    Decimal total = tempNum1 - tempNum2;
-                    userInp.Text = Convert.ToString(total);
-                }
-                else if (tempTotal[i] == "/")
-                {
-                    Decimal tempNum1 = Convert.ToDecimal(tempTotal[i - 1]);
-                    Decimal tempNum2 = Convert.ToDecimal(tempTotal[i + 1]);
-                    Decimal total = tempNum1 / tempNum2;
-                    userInp.Text = Convert.ToString(total);
-                }
-                else if (tempTotal[i] == "*")
-                {
-                    Decimal tempNum1 = Convert.ToDecimal(tempTotal[i - 1]);
-                    Decimal tempNum2 = Convert.ToDecimal(tempTotal[i + 1]);
-                    Decimal total = tempNum1 * tempNum2;
-                    userInp.Text = Convert.ToString(total);
-                }
-
-
-                // Decimal tempNum1 = Convert.ToDecimal(i);
-                // Decimal tempNum2 = Convert.ToDecimal(i + 2);
             }
-            
+            else
+            {
+            headInp.Text = headInp.Text + ' ' + userInp.Text;
+                String[] tempTotal = headInp.Text.Split(' ');
+                for (int i = 0; i < tempTotal.Length; i++)
+                {
+                    if (tempTotal[i] == "+")
+                    {
+                        Decimal tempNum1 = Convert.ToDecimal(tempTotal[i - 1]);
+                        Decimal tempNum2 = Convert.ToDecimal(tempTotal[i + 1]);
+                        Decimal total = tempNum1 + tempNum2;
+                        userInp.Text = Convert.ToString(total);
+
+                    }
+                    else if (tempTotal[i] == "-")
+                    {
+                        Decimal tempNum1 = Convert.ToDecimal(tempTotal[i - 1]);
+                        Decimal tempNum2 = Convert.ToDecimal(tempTotal[i + 1]);
+                        Decimal total = tempNum1 - tempNum2;
+                        userInp.Text = Convert.ToString(total);
+                    }
+                    else if (tempTotal[i] == "/")
+                    {
+                        Decimal tempNum1 = Convert.ToDecimal(tempTotal[i - 1]);
+                        Decimal tempNum2 = Convert.ToDecimal(tempTotal[i + 1]);
+                        Decimal total = tempNum1 / tempNum2;
+                        userInp.Text = Convert.ToString(total);
+                    }
+                    else if (tempTotal[i] == "*")
+                    {
+                        Decimal tempNum1 = Convert.ToDecimal(tempTotal[i - 1]);
+                        Decimal tempNum2 = Convert.ToDecimal(tempTotal[i + 1]);
+                        Decimal total = tempNum1 * tempNum2;
+                        userInp.Text = Convert.ToString(total);
+                    }
+
+
+                    // Decimal tempNum1 = Convert.ToDecimal(i);
+                    // Decimal tempNum2 = Convert.ToDecimal(i + 2);
+                }
+            }
+
             //userInp.Text = Total;
             status = "=";
         }
