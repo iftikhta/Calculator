@@ -172,9 +172,13 @@ namespace Assignment1Calculator
         private void Divide_Click(object sender, RoutedEventArgs e)
         {
             String[] lencheck = headInp.Text.Split(' ');
+            if (status == "=")
+            {
+                headInp.Text = "";
+            }
             if (lencheck.Length > 1)
             {
-                headInp.Text = $"{headInp.Text} {userInp.Text} *";
+                headInp.Text = $"{headInp.Text} {userInp.Text} /";
                 status = "/";
             }
             else
@@ -281,7 +285,8 @@ namespace Assignment1Calculator
         {
 
             // must ad an if status = "=", then do nothing type of code here to prevent repeated spam of +
-
+            //String tempHead = headInp.Text;
+            //headInp.Text = "";
             if (status == "=")
             {
          
@@ -302,6 +307,8 @@ namespace Assignment1Calculator
                     status = "=";
                 }
             }*/
+         
+
            
             
             else
@@ -311,63 +318,67 @@ namespace Assignment1Calculator
                StringCollection fullStringCollection = new StringCollection();
                String[] splitHeader = headInp.Text.Split(' ');
                fullStringCollection.AddRange(splitHeader);
-               
+
                 // must make below line only run if there is more than  1 number
+
+                
                 Decimal sumTotal = Convert.ToDecimal(fullStringCollection[0]);
+                
+
                 for (int i = 1; i < fullStringCollection.Count; i++)
-                {
-                    if (fullStringCollection[i] == "+")
                     {
-                        //Decimal tempNum1 = Convert.ToDecimal(fullStringCollection[i - 1]);
-                        Decimal tempNum2 = Convert.ToDecimal(fullStringCollection[i + 1]);
-                        sumTotal = sumTotal + tempNum2;
-                        //sumTotal = total;
-                        //tempTotal.RemoveAt(0);
-                        //tempTotal.RemoveAt(0);
-                        //fullStringCollection.Insert(i+1, Convert.ToString(subTotal));
-                        //sumTotal = Convert.ToDecimal(fullStringCollection[i + 1]);
+                        if (fullStringCollection[i] == "+")
+                        {
+                            //Decimal tempNum1 = Convert.ToDecimal(fullStringCollection[i - 1]);
+                            Decimal tempNum2 = Convert.ToDecimal(fullStringCollection[i + 1]);
+                            sumTotal = sumTotal + tempNum2;
+                            //sumTotal = total;
+                            //tempTotal.RemoveAt(0);
+                            //tempTotal.RemoveAt(0);
+                            //fullStringCollection.Insert(i+1, Convert.ToString(subTotal));
+                            //sumTotal = Convert.ToDecimal(fullStringCollection[i + 1]);
 
-                        //userInp.Text = Convert.ToString(total);
+                            //userInp.Text = Convert.ToString(total);
 
+                        }
+                        else if (fullStringCollection[i] == "-")
+                        {
+                            Decimal tempNum2 = Convert.ToDecimal(fullStringCollection[i + 1]);
+                            sumTotal = sumTotal - tempNum2;
+                            /*
+                            Decimal tempNum1 = Convert.ToDecimal(fullStringCollection[i - 1]);
+                            Decimal tempNum2 = Convert.ToDecimal(fullStringCollection[i + 1]);
+                            Decimal total = tempNum1 - tempNum2;
+                            sumTotal += total;*/
+                            //userInp.Text = Convert.ToString(total);
+                        }
+                        else if (fullStringCollection[i] == "/")
+                        {
+                            Decimal tempNum2 = Convert.ToDecimal(fullStringCollection[i + 1]);
+                            sumTotal = sumTotal / tempNum2;
+                            /*Decimal tempNum1 = Convert.ToDecimal(fullStringCollection[i - 1]);
+                            Decimal tempNum2 = Convert.ToDecimal(fullStringCollection[i + 1]);
+                            Decimal total = tempNum1 / tempNum2;
+                            sumTotal += total;*/
+                            //userInp.Text = Convert.ToString(total);
+                        }
+                        else if (fullStringCollection[i] == "*")
+                        {
+                            Decimal tempNum2 = Convert.ToDecimal(fullStringCollection[i + 1]);
+                            sumTotal = sumTotal * tempNum2;
+                            /*Decimal tempNum1 = Convert.ToDecimal(fullStringCollection[i - 1]);
+                            Decimal tempNum2 = Convert.ToDecimal(fullStringCollection[i + 1]);
+                            Decimal total = tempNum1 * tempNum2;
+                            sumTotal += total;*/
+                            //userInp.Text = Convert.ToString(total);
+                        }
+
+
+                        // Decimal tempNum1 = Convert.ToDecimal(i);
+                        // Decimal tempNum2 = Convert.ToDecimal(i + 2);
+                        //sumTotal = Convert.ToDecimal(tempTotal[i + 1]);
                     }
-                    else if (fullStringCollection[i] == "-")
-                    {
-                        Decimal tempNum2 = Convert.ToDecimal(fullStringCollection[i + 1]);
-                        sumTotal = sumTotal - tempNum2;
-                        /*
-                        Decimal tempNum1 = Convert.ToDecimal(fullStringCollection[i - 1]);
-                        Decimal tempNum2 = Convert.ToDecimal(fullStringCollection[i + 1]);
-                        Decimal total = tempNum1 - tempNum2;
-                        sumTotal += total;*/
-                        //userInp.Text = Convert.ToString(total);
-                    }
-                    else if (fullStringCollection[i] == "/")
-                    {
-                        Decimal tempNum2 = Convert.ToDecimal(fullStringCollection[i + 1]);
-                        sumTotal = sumTotal / tempNum2;
-                        /*Decimal tempNum1 = Convert.ToDecimal(fullStringCollection[i - 1]);
-                        Decimal tempNum2 = Convert.ToDecimal(fullStringCollection[i + 1]);
-                        Decimal total = tempNum1 / tempNum2;
-                        sumTotal += total;*/
-                        //userInp.Text = Convert.ToString(total);
-                    }
-                    else if (fullStringCollection[i] == "*")
-                    {
-                        Decimal tempNum2 = Convert.ToDecimal(fullStringCollection[i + 1]);
-                        sumTotal = sumTotal * tempNum2;
-                        /*Decimal tempNum1 = Convert.ToDecimal(fullStringCollection[i - 1]);
-                        Decimal tempNum2 = Convert.ToDecimal(fullStringCollection[i + 1]);
-                        Decimal total = tempNum1 * tempNum2;
-                        sumTotal += total;*/
-                        //userInp.Text = Convert.ToString(total);
-                    }
-
-
-                    // Decimal tempNum1 = Convert.ToDecimal(i);
-                    // Decimal tempNum2 = Convert.ToDecimal(i + 2);
-                    //sumTotal = Convert.ToDecimal(tempTotal[i + 1]);
-                }
-
+                
 
                 //total answer after for loop must go here
                 userInp.Text = Convert.ToString(sumTotal);
@@ -380,7 +391,11 @@ namespace Assignment1Calculator
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            userInp.Text = userInp.Text.Remove(userInp.Text.Length-1);
+            if (userInp.Text.Length >= 1)
+            {
+                userInp.Text = userInp.Text.Remove(userInp.Text.Length - 1);
+            }
+            //userInp.Text = userInp.Text.Remove(userInp.Text.Length-1);
         }
 
         private void Clear_Click(object sender, RoutedEventArgs e)
@@ -392,11 +407,18 @@ namespace Assignment1Calculator
         {
             // These below lines dont work yet
             // userInp.Text = Convert.ToString(Convert.ToDecimal(userInp.Text)*-1);
-            if (userInp.Text[0] == '-')
-            {
-                userInp.Text = userInp.Text.Substring(1);
-            }
 
+            if (userInp.Text.Length >= 1)
+            {
+                if (userInp.Text[0] == '-')
+                {
+                    userInp.Text = userInp.Text.Substring(1);
+                }
+                else
+                {
+                    userInp.Text = "-" + userInp.Text; //userInp.Text + "-";
+                }
+            }
             else
             {
                 userInp.Text = "-" + userInp.Text; //userInp.Text + "-";
