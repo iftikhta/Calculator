@@ -57,7 +57,7 @@ namespace Assignment1Calculator
         }
 
         private void One_Click(object sender, RoutedEventArgs e)
-        {
+        {    //the if status check will check if there is an operator in queue and if so, it will clear input and status
             //string newVar = userInp.Parse(userInp.Text); This does not work, took me a an embarssing amount of time to get this right
             if (status != "")
             {
@@ -179,6 +179,13 @@ namespace Assignment1Calculator
             }
             else
             {
+                // creating a end decimal checker/remover
+
+                if (userInp.Text.EndsWith("."))
+                {
+                    // cutt off the decimal
+                    userInp.Text = userInp.Text.TrimEnd('.');
+                }
                 temp = userInp.Text + " /";
                 headInp.Text += temp;
                 status = "/";
@@ -209,6 +216,13 @@ namespace Assignment1Calculator
             }
             else
             {
+                // creating a end decimal checker/remover
+
+                if (userInp.Text.EndsWith("."))
+                {
+                    // cutt off the decimal
+                    userInp.Text = userInp.Text.TrimEnd('.');
+                }
                 temp = userInp.Text + " -";
                 headInp.Text += temp;
                 status = "-";
@@ -225,6 +239,13 @@ namespace Assignment1Calculator
             }
             else
             {
+                // creating a end decimal checker/remover
+
+                if (userInp.Text.EndsWith("."))
+                {
+                    // cutt off the decimal
+                    userInp.Text = userInp.Text.TrimEnd('.');
+                }
                 temp = userInp.Text + " *";
                 headInp.Text += temp;
                 status = "*";
@@ -243,6 +264,13 @@ namespace Assignment1Calculator
             }
             else
             {
+                // creating a end decimal checker/remover
+
+                if (userInp.Text.EndsWith("."))
+                {
+                    // cutt off the decimal
+                    userInp.Text = userInp.Text.TrimEnd('.');
+                }
                 temp = userInp.Text + " +";
                 headInp.Text += temp;
                 status = "+";
@@ -363,8 +391,40 @@ namespace Assignment1Calculator
         private void Invert_Click(object sender, RoutedEventArgs e)
         {
             // These below lines dont work yet
-           // userInp.Text = Convert.ToString(Convert.ToDecimal(userInp.Text)*-1);
-           userInp.Text = "-"+ userInp.Text;
+            // userInp.Text = Convert.ToString(Convert.ToDecimal(userInp.Text)*-1);
+            if (userInp.Text[0] == '-')
+            {
+                userInp.Text = userInp.Text.Substring(1);
+            }
+
+            else
+            {
+                userInp.Text = "-" + userInp.Text; //userInp.Text + "-";
+            }
+        }
+
+        private void Deciaml_Click(object sender, RoutedEventArgs e)
+        {
+           /* if (status != "")
+            {
+                // headInp.Text = temp;
+                userInp.Text = "";
+                status = "";
+            }*/
+
+           if (userInp.Text.Length == 0)
+           {
+               userInp.Text = "0.";
+           }
+           else if (userInp.Text.EndsWith("."))
+           {
+
+           }
+    
+           else
+           {
+               userInp.Text = userInp.Text + ".";
+           }
         }
     }
 }

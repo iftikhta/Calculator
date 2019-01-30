@@ -42,12 +42,12 @@
         <Button x:Name="six" Content="6" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Row="4" Grid.Column="2" FontSize="72" Click="Six_Click"/>
         <Button x:Name="subtract" Content="-" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Row="4" Grid.Column="3" Click="Subtract_Click" FontSize="72"/>
         <Button x:Name="one" Content="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Row="5" FontSize="72" Click="One_Click" />
-        <Button x:Name="invert" Content="+-" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Row="6" FontSize="72"/>
+        <Button x:Name="invert" Content="+-" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Row="6" FontSize="72" Click="Invert_Click"/>
         <Button x:Name="two" Content="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Row="5" FontSize="72" Margin="0,0,0,0" Grid.Column="1" Click="Two_Click" />
         <Button x:Name="three" Content="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Row="5" FontSize="72" Grid.Column="2" Click="Three_Click" />
         <Button x:Name="plus" Content="+" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Row="5" Grid.Column="3" FontSize="72" Click="Plus_Click"/>
         <Button x:Name="zero" Content="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Row="6" Grid.Column="1"  FontSize="72" Click="Zero_Click"/>
-        <Button x:Name="deciaml" Content="." HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Row="6" Grid.Column="2" FontSize="72"/>
+        <Button x:Name="deciaml" Content="." HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Row="6" Grid.Column="2" FontSize="72" Click="Deciaml_Click"/>
         <Button x:Name="equals" Content="=" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Row="6" Grid.Column="3"  FontSize="72" Click="Equals_Click"/>
 
     </Grid>
