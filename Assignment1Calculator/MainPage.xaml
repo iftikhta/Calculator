@@ -30,8 +30,8 @@
         <TextBlock x:Name="headInp" HorizontalAlignment="Stretch" Text ="" VerticalAlignment="Stretch"  Grid.ColumnSpan="4"  Grid.Row="0" TextAlignment="Right" />
         <TextBlock x:Name="userInp" HorizontalAlignment="Stretch" Text="" VerticalAlignment="Stretch"  Grid.ColumnSpan="4"  Grid.Row="1" TextAlignment="Right" SelectionChanged="TextBlock_SelectionChanged" />
         <Button x:Name="fullClear" Content="CE" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Row="2"  Grid.ColumnSpan="1" Click="FullClear_Click" FontSize="72" />
-        <Button x:Name="clear" Content="C" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Row="2"  Grid.ColumnSpan="1" Margin="0,0,0,0" Grid.Column="1" FontSize="72" />
-        <Button x:Name="back" Content="&lt;-" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Row="2" Grid.Column="2" FontSize="72" />
+        <Button x:Name="clear" Content="C" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Row="2"  Grid.ColumnSpan="1" Margin="0,0,0,0" Grid.Column="1" FontSize="72" Click="Clear_Click" />
+        <Button x:Name="back" Content="&lt;-" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Row="2" Grid.Column="2" FontSize="72" Click="Back_Click" />
         <Button x:Name="divide" Content="/" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Row="2" Grid.Column="3" Click="Divide_Click" FontSize="72" />
         <Button x:Name="seven" Content="7" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Row="3" Margin="0,0,0,0" FontSize="72" Click="Seven_Click" />
         <Button x:Name="eight" Content="8" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Row="3" Grid.Column="1" Margin="0,0,0,0" FontSize="72" Click="Eight_Click" />

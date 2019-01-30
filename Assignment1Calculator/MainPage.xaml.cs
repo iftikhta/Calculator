@@ -190,6 +190,10 @@ namespace Assignment1Calculator
 
         private void FullClear_Click(object sender, RoutedEventArgs e)
         {
+            userInp.Text = "";
+            headInp.Text = "";
+            status = "";
+            temp = "";
 
         }
 
@@ -344,6 +348,23 @@ namespace Assignment1Calculator
 
             //userInp.Text = Total;
             status = "=";
+        }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            userInp.Text = userInp.Text.Remove(userInp.Text.Length-1);
+        }
+
+        private void Clear_Click(object sender, RoutedEventArgs e)
+        {
+            userInp.Text = "";
+        }
+
+        private void Invert_Click(object sender, RoutedEventArgs e)
+        {
+            // These below lines dont work yet
+           // userInp.Text = Convert.ToString(Convert.ToDecimal(userInp.Text)*-1);
+           userInp.Text = "-"+ userInp.Text;
         }
     }
 }
