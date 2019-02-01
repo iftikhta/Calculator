@@ -22,6 +22,7 @@ namespace Assignment1Calculator
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
 
+    /* previously repeated coments are being kept by me  atleast once incase I need to refrence them quickly for any reason*/
     public sealed partial class MainPage : Page
     {
         //last clicked operator
@@ -30,27 +31,24 @@ namespace Assignment1Calculator
         // temporary storage 
         String temp = "";
 
+        //writing functions up here because its easier
+
+        public void OnNumClick(string num)
+        {
+            if (status != "")
+            {
+                userInp.Text = "";
+                status = "";
+            }
+            userInp.Text = userInp.Text + num;
+        }
+
         public MainPage()
         {
             this.InitializeComponent();
             
         }
-        /*
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
 
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-
-        }
-        */
         private void TextBlock_SelectionChanged(object sender, RoutedEventArgs e)
         {
 
@@ -58,10 +56,9 @@ namespace Assignment1Calculator
 
         private void One_Click(object sender, RoutedEventArgs e)
         {    //the if status check will check if there is an operator in queue and if so, it will clear input and status
-            //string newVar = userInp.Parse(userInp.Text); This does not work, took me a an embarssing amount of time to get this right
             if (status != "")
             {
-               // headInp.Text = temp;
+                // headInp.Text = temp;  ---> No longer in use here as I changed 
                 userInp.Text = "";
                 status = "";
             }
@@ -70,20 +67,20 @@ namespace Assignment1Calculator
 
         private void Two_Click(object sender, RoutedEventArgs e)
         {
+            OnNumClick("2");
+            /*
             if (status != "")
             {
-               // headInp.Text = temp;
                 userInp.Text = "";
                 status = "";
             }
-            userInp.Text = userInp.Text + "2";
+            userInp.Text = userInp.Text + "2";*/
         }
 
         private void Three_Click(object sender, RoutedEventArgs e)
         {
             if (status != "")
             {
-               // headInp.Text = temp;
                 userInp.Text = "";
                 status = "";
             }
@@ -94,7 +91,6 @@ namespace Assignment1Calculator
         {
             if (status != "")
             {
-               // headInp.Text = temp;
                 userInp.Text = "";
                 status = "";
             }
@@ -106,7 +102,6 @@ namespace Assignment1Calculator
         {
             if (status != "")
             {
-               // headInp.Text = temp;
                 userInp.Text = "";
                 status = "";
             }
@@ -117,7 +112,6 @@ namespace Assignment1Calculator
         {
             if (status != "")
             {
-               // headInp.Text = temp;
                 userInp.Text = "";
                 status = "";
             }
@@ -129,7 +123,6 @@ namespace Assignment1Calculator
         {
             if (status != "")
             {
-               // headInp.Text = temp;
                 userInp.Text = "";
                 status = "";
             }
@@ -140,7 +133,6 @@ namespace Assignment1Calculator
         {
             if (status != "")
             {
-                //headInp.Text = temp;
                 userInp.Text = "";
                 status = "";
             }
@@ -151,7 +143,6 @@ namespace Assignment1Calculator
         {
             if (status != "")
             {
-                //headInp.Text = temp;
                 userInp.Text = "";
                 status = "";
             }
@@ -162,7 +153,6 @@ namespace Assignment1Calculator
         {
             if (status != "")
             {
-                //headInp.Text = temp;
                 userInp.Text = "";
                 status = "";
             }
@@ -170,11 +160,13 @@ namespace Assignment1Calculator
         }
 
 
-        // for some reason this even does not work when dividing a previous answer
+        // operators below, known bugs fixed
         private void Divide_Click(object sender, RoutedEventArgs e)
         {
             String[] lencheck = headInp.Text.Split(' ');
-           /* if (status == "=")
+           /* This code was being considered as a status check to erase only part of the headInp.Text if that was required
+            
+            if (status == "=")
             {
                 headInp.Text = "";
             }*/
@@ -196,8 +188,7 @@ namespace Assignment1Calculator
                 headInp.Text += temp;
                 status = "/";
             }
-            /*temp = userInp.Text + " /";
-            status = "/";*/
+            
 
         }
 
@@ -212,8 +203,6 @@ namespace Assignment1Calculator
 
         private void Subtract_Click(object sender, RoutedEventArgs e)
         {
-            /* temp = userInp.Text + " -";
-             status = "-";*/
             String[] lencheck = headInp.Text.Split(' ');
             if (lencheck.Length > 1)
             {
@@ -255,9 +244,7 @@ namespace Assignment1Calculator
                 temp = userInp.Text + " *";
                 headInp.Text += temp;
                 status = "*";
-            }
-            /* temp = userInp.Text + " *";
-             status = "*";*/
+            }      
         }
 
         private void Plus_Click(object sender, RoutedEventArgs e)
@@ -285,11 +272,6 @@ namespace Assignment1Calculator
 
         private void Equals_Click(object sender, RoutedEventArgs e)
         {
-           // headInp.Text = "";
-
-            // must ad an if status = "=", then do nothing type of code here to prevent repeated spam of +
-            //String tempHead = headInp.Text;
-            //headInp.Text = "";
             if (status == "=")
             {
          
@@ -298,32 +280,18 @@ namespace Assignment1Calculator
             else if (headInp.Text.Split(' ').Length == 1) 
             {
 
-            }
-
-            // must fix equal sign click,it consantly breaks format after the first useage
-           /* else if (userInp.Text.Length == 1 && headInp.Text =="")
-            {
-                if (status == "+")
-                {
-                    headInp.Text = $"{userInp.Text} + {userInp.Text}";
-                    userInp.Text = Convert.ToString(Convert.ToDecimal(userInp.Text)+ Convert.ToDecimal(userInp.Text));
-                    status = "=";
-                }
-            }*/
-         
-
-           
-            
+            }      
             else
             {
             headInp.Text = headInp.Text + " "  + userInp.Text;
-               // String[] tempTotal = headInp.Text.Split(' ');
+               // creating a StringCollection to store String[] in
                StringCollection fullStringCollection = new StringCollection();
+               // String[] splitHeader stores the split up headInp.Text so I can loop through it
                String[] splitHeader = headInp.Text.Split(' ');
+               // I used addRange, to add the String[] I created to the string collection
                fullStringCollection.AddRange(splitHeader);
 
                 // must make below line only run if there is more than  1 number
-
                 
                 Decimal sumTotal = Convert.ToDecimal(fullStringCollection[0]);
                 
@@ -332,63 +300,34 @@ namespace Assignment1Calculator
                     {
                         if (fullStringCollection[i] == "+")
                         {
-                            //Decimal tempNum1 = Convert.ToDecimal(fullStringCollection[i - 1]);
                             Decimal tempNum2 = Convert.ToDecimal(fullStringCollection[i + 1]);
                             sumTotal = sumTotal + tempNum2;
-                            //sumTotal = total;
-                            //tempTotal.RemoveAt(0);
-                            //tempTotal.RemoveAt(0);
-                            //fullStringCollection.Insert(i+1, Convert.ToString(subTotal));
-                            //sumTotal = Convert.ToDecimal(fullStringCollection[i + 1]);
-
-                            //userInp.Text = Convert.ToString(total);
-
                         }
+
                         else if (fullStringCollection[i] == "-")
                         {
                             Decimal tempNum2 = Convert.ToDecimal(fullStringCollection[i + 1]);
                             sumTotal = sumTotal - tempNum2;
-                            /*
-                            Decimal tempNum1 = Convert.ToDecimal(fullStringCollection[i - 1]);
-                            Decimal tempNum2 = Convert.ToDecimal(fullStringCollection[i + 1]);
-                            Decimal total = tempNum1 - tempNum2;
-                            sumTotal += total;*/
-                            //userInp.Text = Convert.ToString(total);
                         }
+
                         else if (fullStringCollection[i] == "/")
                         {
                             Decimal tempNum2 = Convert.ToDecimal(fullStringCollection[i + 1]);
                             sumTotal = sumTotal / tempNum2;
-                            /*Decimal tempNum1 = Convert.ToDecimal(fullStringCollection[i - 1]);
-                            Decimal tempNum2 = Convert.ToDecimal(fullStringCollection[i + 1]);
-                            Decimal total = tempNum1 / tempNum2;
-                            sumTotal += total;*/
-                            //userInp.Text = Convert.ToString(total);
                         }
+
                         else if (fullStringCollection[i] == "*")
                         {
                             Decimal tempNum2 = Convert.ToDecimal(fullStringCollection[i + 1]);
                             sumTotal = sumTotal * tempNum2;
-                            /*Decimal tempNum1 = Convert.ToDecimal(fullStringCollection[i - 1]);
-                            Decimal tempNum2 = Convert.ToDecimal(fullStringCollection[i + 1]);
-                            Decimal total = tempNum1 * tempNum2;
-                            sumTotal += total;*/
-                            //userInp.Text = Convert.ToString(total);
                         }
-
-
-                        // Decimal tempNum1 = Convert.ToDecimal(i);
-                        // Decimal tempNum2 = Convert.ToDecimal(i + 2);
-                        //sumTotal = Convert.ToDecimal(tempTotal[i + 1]);
                     }
-                
-
                 //total answer after for loop must go here
                 userInp.Text = Convert.ToString(sumTotal);
 
             }
 
-            //userInp.Text = Total;
+            //resets the head text and sets correct status after calculations are done
             headInp.Text = "";
             status = "=";
         }
@@ -399,7 +338,6 @@ namespace Assignment1Calculator
             {
                 userInp.Text = userInp.Text.Remove(userInp.Text.Length - 1);
             }
-            //userInp.Text = userInp.Text.Remove(userInp.Text.Length-1);
         }
 
         private void Clear_Click(object sender, RoutedEventArgs e)
@@ -409,9 +347,6 @@ namespace Assignment1Calculator
 
         private void Invert_Click(object sender, RoutedEventArgs e)
         {
-            // These below lines dont work yet
-            // userInp.Text = Convert.ToString(Convert.ToDecimal(userInp.Text)*-1);
-
             if (userInp.Text.Length >= 1)
             {
                 if (userInp.Text[0] == '-')
@@ -420,23 +355,17 @@ namespace Assignment1Calculator
                 }
                 else
                 {
-                    userInp.Text = "-" + userInp.Text; //userInp.Text + "-";
+                    userInp.Text = "-" + userInp.Text;
                 }
             }
             else
             {
-                userInp.Text = "-" + userInp.Text; //userInp.Text + "-";
+                userInp.Text = "-" + userInp.Text;
             }
         }
 
         private void Deciaml_Click(object sender, RoutedEventArgs e)
         {
-           /* if (status != "")
-            {
-                // headInp.Text = temp;
-                userInp.Text = "";
-                status = "";
-            }*/
 
            if (userInp.Text.Length == 0)
            {
