@@ -169,13 +169,15 @@ namespace Assignment1Calculator
             userInp.Text = userInp.Text + "0";
         }
 
+
+        // for some reason this even does not work when dividing a previous answer
         private void Divide_Click(object sender, RoutedEventArgs e)
         {
             String[] lencheck = headInp.Text.Split(' ');
-            if (status == "=")
+           /* if (status == "=")
             {
                 headInp.Text = "";
-            }
+            }*/
             if (lencheck.Length > 1)
             {
                 headInp.Text = $"{headInp.Text} {userInp.Text} /";
@@ -283,6 +285,7 @@ namespace Assignment1Calculator
 
         private void Equals_Click(object sender, RoutedEventArgs e)
         {
+           // headInp.Text = "";
 
             // must ad an if status = "=", then do nothing type of code here to prevent repeated spam of +
             //String tempHead = headInp.Text;
@@ -386,6 +389,7 @@ namespace Assignment1Calculator
             }
 
             //userInp.Text = Total;
+            headInp.Text = "";
             status = "=";
         }
 
