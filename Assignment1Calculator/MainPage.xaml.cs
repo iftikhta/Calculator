@@ -34,7 +34,7 @@ namespace Assignment1Calculator
         //writing functions up here because its easier
 
         public void OnNumClick(string num)
-        {
+        {   //the if status check will check if there is an operator in queue and if so, it will clear input and status
             if (status != "")
             {
                 userInp.Text = "";
@@ -42,6 +42,30 @@ namespace Assignment1Calculator
             }
             userInp.Text = userInp.Text + num;
         }
+
+        public void OnOperatorClick(string Operator)
+        {
+            String[] lencheck = headInp.Text.Split(' ');
+            if (lencheck.Length > 1)
+            {
+                headInp.Text = $"{headInp.Text} {userInp.Text} {Operator}";
+                status = "-";
+            }
+            else
+            {
+                // creating a end decimal checker/remover
+
+                if (userInp.Text.EndsWith("."))
+                {
+                    // cutt off the decimal
+                    userInp.Text = userInp.Text.TrimEnd('.');
+                }
+                temp = userInp.Text + $" {Operator}";
+                headInp.Text += temp;
+                status = Operator;
+            }
+        }
+
 
         public MainPage()
         {
@@ -55,141 +79,61 @@ namespace Assignment1Calculator
         }
 
         private void One_Click(object sender, RoutedEventArgs e)
-        {    //the if status check will check if there is an operator in queue and if so, it will clear input and status
-            if (status != "")
-            {
-                // headInp.Text = temp;  ---> No longer in use here as I changed 
-                userInp.Text = "";
-                status = "";
-            }
-            userInp.Text = userInp.Text + "1";
+        {
+            OnNumClick("1");
         }
 
         private void Two_Click(object sender, RoutedEventArgs e)
         {
             OnNumClick("2");
-            /*
-            if (status != "")
-            {
-                userInp.Text = "";
-                status = "";
-            }
-            userInp.Text = userInp.Text + "2";*/
         }
 
         private void Three_Click(object sender, RoutedEventArgs e)
         {
-            if (status != "")
-            {
-                userInp.Text = "";
-                status = "";
-            }
-            userInp.Text = userInp.Text + "3";
+            OnNumClick("3");
         }
 
         private void Four_Click(object sender, RoutedEventArgs e)
         {
-            if (status != "")
-            {
-                userInp.Text = "";
-                status = "";
-            }
-            userInp.Text = userInp.Text + "4";
+            OnNumClick("4");
 
         }
 
         private void Five_Click(object sender, RoutedEventArgs e)
         {
-            if (status != "")
-            {
-                userInp.Text = "";
-                status = "";
-            }
-            userInp.Text = userInp.Text + "5";
+            OnNumClick("5");
         }
 
         private void Six_Click(object sender, RoutedEventArgs e)
         {
-            if (status != "")
-            {
-                userInp.Text = "";
-                status = "";
-            }
-            userInp.Text = userInp.Text + "6";
-
+            OnNumClick("6");
         }
 
         private void Seven_Click(object sender, RoutedEventArgs e)
         {
-            if (status != "")
-            {
-                userInp.Text = "";
-                status = "";
-            }
-            userInp.Text = userInp.Text + "7";
+            OnNumClick("7");
         }
 
         private void Eight_Click(object sender, RoutedEventArgs e)
         {
-            if (status != "")
-            {
-                userInp.Text = "";
-                status = "";
-            }
-            userInp.Text = userInp.Text + "8";
+            OnNumClick("8");
         }
 
         private void Nine_Click(object sender, RoutedEventArgs e)
         {
-            if (status != "")
-            {
-                userInp.Text = "";
-                status = "";
-            }
-            userInp.Text = userInp.Text + "9";
+            OnNumClick("9");
         }
 
         private void Zero_Click(object sender, RoutedEventArgs e)
         {
-            if (status != "")
-            {
-                userInp.Text = "";
-                status = "";
-            }
-            userInp.Text = userInp.Text + "0";
+            OnNumClick("0");
         }
 
 
         // operators below, known bugs fixed
         private void Divide_Click(object sender, RoutedEventArgs e)
         {
-            String[] lencheck = headInp.Text.Split(' ');
-           /* This code was being considered as a status check to erase only part of the headInp.Text if that was required
-            
-            if (status == "=")
-            {
-                headInp.Text = "";
-            }*/
-            if (lencheck.Length > 1)
-            {
-                headInp.Text = $"{headInp.Text} {userInp.Text} /";
-                status = "/";
-            }
-            else
-            {
-                // creating a end decimal checker/remover
-
-                if (userInp.Text.EndsWith("."))
-                {
-                    // cutt off the decimal
-                    userInp.Text = userInp.Text.TrimEnd('.');
-                }
-                temp = userInp.Text + " /";
-                headInp.Text += temp;
-                status = "/";
-            }
-            
-
+            OnOperatorClick("/");
         }
 
         private void FullClear_Click(object sender, RoutedEventArgs e)
@@ -203,73 +147,20 @@ namespace Assignment1Calculator
 
         private void Subtract_Click(object sender, RoutedEventArgs e)
         {
-            String[] lencheck = headInp.Text.Split(' ');
-            if (lencheck.Length > 1)
-            {
-                headInp.Text = $"{headInp.Text} {userInp.Text} -";
-                status = "-";
-            }
-            else
-            {
-                // creating a end decimal checker/remover
-
-                if (userInp.Text.EndsWith("."))
-                {
-                    // cutt off the decimal
-                    userInp.Text = userInp.Text.TrimEnd('.');
-                }
-                temp = userInp.Text + " -";
-                headInp.Text += temp;
-                status = "-";
-            }
+            OnOperatorClick("-");
         }
 
         private void Multiply_Click(object sender, RoutedEventArgs e)
         {
-            String[] lencheck = headInp.Text.Split(' ');
-            if (lencheck.Length > 1)
-            {
-                headInp.Text = $"{headInp.Text} {userInp.Text} *";
-                status = "*";
-            }
-            else
-            {
-                // creating a end decimal checker/remover
-
-                if (userInp.Text.EndsWith("."))
-                {
-                    // cutt off the decimal
-                    userInp.Text = userInp.Text.TrimEnd('.');
-                }
-                temp = userInp.Text + " *";
-                headInp.Text += temp;
-                status = "*";
-            }      
+            OnOperatorClick("*");
         }
 
         private void Plus_Click(object sender, RoutedEventArgs e)
         {
-            String[] lencheck = headInp.Text.Split(' ');
-            if (lencheck.Length > 1)
-            {
-                headInp.Text = $"{headInp.Text} {userInp.Text} +";
-                status = "+";
-            }
-            else
-            {
-                // creating a end decimal checker/remover
-
-                if (userInp.Text.EndsWith("."))
-                {
-                    // cutt off the decimal
-                    userInp.Text = userInp.Text.TrimEnd('.');
-                }
-                temp = userInp.Text + " +";
-                headInp.Text += temp;
-                status = "+";
-            }
+            OnOperatorClick("+");
         }
 
+        // the Equals_Click function could be partially refactored but I think its totally extra and wont accomplish much
         private void Equals_Click(object sender, RoutedEventArgs e)
         {
             if (status == "=")
