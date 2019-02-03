@@ -31,9 +31,6 @@ namespace Assignment1Calculator
         // temporary storage 
         String temp = "";
 
-        // secondary temp
-        //String temp2 = "";
-
         //writing functions up here because its easier
 
         public void OnNumClick(string num)
@@ -63,8 +60,6 @@ namespace Assignment1Calculator
                     // cutt off the decimal
                     userInp.Text = userInp.Text.TrimEnd('.');
                 }
-
-                
                 temp = userInp.Text + $" {Operator}";
                 headInp.Text += temp;
                 status = Operator;
@@ -82,6 +77,7 @@ namespace Assignment1Calculator
         {
 
         }
+
         private void One_Click(object sender, RoutedEventArgs e)
         {
             OnNumClick("1");
@@ -225,7 +221,6 @@ namespace Assignment1Calculator
             //resets the head text and sets correct status after calculations are done
             headInp.Text = "";
             status = "=";
-            temp = "";
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
@@ -263,26 +258,18 @@ namespace Assignment1Calculator
         private void Deciaml_Click(object sender, RoutedEventArgs e)
         {
 
-           if (temp.Length == 0 || userInp.Text.Length==0 || status=="=")
+           if (userInp.Text.Length == 0)
            {
-               //userInp.Text = "0.";
-               OnNumClick("0.");
+               userInp.Text = "0.";
            }
-
-          // write code to check if status was just enterd to multiply, divide etc, if so then permit starting with a decimal number and wiping
-          //the current number in input before as long, treating it as  0.
-
-
-
-           else if (userInp.Text.Contains("."))
+           else if (userInp.Text.EndsWith("."))
            {
 
            }
     
            else
            {
-                // userInp.Text = userInp.Text + ".";
-                OnNumClick(".");
+               userInp.Text = userInp.Text + ".";
            }
         }
     }
