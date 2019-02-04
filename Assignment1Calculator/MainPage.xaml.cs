@@ -309,12 +309,6 @@ namespace Assignment1Calculator
             {
             }
 
-            /*//makes sure new decimals after an operator start with 0. also
-            else if (_status != "")
-            {
-                userInp.Text = "0.";
-                _status = "";
-            }*/
 
             else 
             {
