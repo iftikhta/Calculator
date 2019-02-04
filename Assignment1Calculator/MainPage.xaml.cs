@@ -31,6 +31,8 @@ namespace Assignment1Calculator
         // temporary storage 
         String temp = "";
 
+        //private bool Decimal = false;
+
         //writing functions up here because its easier
 
         public void OnNumClick(string num)
@@ -46,7 +48,11 @@ namespace Assignment1Calculator
         public void OnOperatorClick(string Operator)
         {
             String[] lencheck = headInp.Text.Split(' ');
-            if (lencheck.Length > 1)
+            if (userInp.Text == "Cannot divide by zero"|| userInp.Text =="Error")
+            {
+
+            }
+            else if (lencheck.Length > 1)
             {
                 headInp.Text = $"{headInp.Text} {userInp.Text} {Operator}";
                 status = "-";
@@ -63,6 +69,7 @@ namespace Assignment1Calculator
                 temp = userInp.Text + $" {Operator}";
                 headInp.Text += temp;
                 status = Operator;
+                //temp = "";
             }
         }
 
@@ -70,7 +77,7 @@ namespace Assignment1Calculator
         public MainPage()
         {
             this.InitializeComponent();
-            
+
         }
 
         private void One_Click(object sender, RoutedEventArgs e)
@@ -156,26 +163,27 @@ namespace Assignment1Calculator
             if (status == "=")
             {
             }
-            else if (headInp.Text.Split(' ').Length == 1) 
+            else if (headInp.Text.Split(' ').Length == 1)
             {
 
-            }      
+            }
             else
             {
-            headInp.Text = headInp.Text + " "  + userInp.Text;
-               // creating a StringCollection to store String[] in
-               StringCollection fullStringCollection = new StringCollection();
-               // String[] splitHeader stores the split up headInp.Text so I can loop through it
-               String[] splitHeader = headInp.Text.Split(' ');
-               // I used addRange, to add the String[] I created to the string collection
-               fullStringCollection.AddRange(splitHeader);
+                headInp.Text = headInp.Text + " " + userInp.Text;
+                // creating a StringCollection to store String[] in
+                StringCollection fullStringCollection = new StringCollection();
+                // String[] splitHeader stores the split up headInp.Text so I can loop through it
+                String[] splitHeader = headInp.Text.Split(' ');
+                // I used addRange, to add the String[] I created to the string collection
+                fullStringCollection.AddRange(splitHeader);
 
-                // must make below line only run if there is more than  1 number
-                
-                Decimal sumTotal = Convert.ToDecimal(fullStringCollection[0]);
-                
+                // might need to make below line only run if there is more than  1 number
+                try
+                {
+                    Decimal sumTotal = Convert.ToDecimal(fullStringCollection[0]);
 
-                for (int i = 1; i < fullStringCollection.Count; i++)
+
+                    for (int i = 1; i < fullStringCollection.Count; i++)
                     {
                         if (fullStringCollection[i] == "+")
                         {
@@ -193,18 +201,47 @@ namespace Assignment1Calculator
                         {
                             Decimal tempNum2 = Convert.ToDecimal(fullStringCollection[i + 1]);
                             // can add a divide by 0 check
-                            
-                            sumTotal = sumTotal / tempNum2;
+                            if (tempNum2 == 0)
+                            {
+                                userInp.Text = "Cannot divide by zero";
+                                headInp.Text = "";
+                                status = "er";
+                                return;
+                            }
+                            else
+                            {
+                                sumTotal = sumTotal / tempNum2;
+                            }
                         }
 
                         else if (fullStringCollection[i] == "*")
                         {
+                            //try
+                            //{
                             Decimal tempNum2 = Convert.ToDecimal(fullStringCollection[i + 1]);
                             sumTotal = sumTotal * tempNum2;
+                            //}
+                            //catch
+                            //{
+                            //    userInp.Text = "Error";
+                            //    headInp.Text = "";
+                            //    status = "er";
+                            //    temp = "";
+
+                            //}
                         }
                     }
-                //total answer after for loop must go here
-                userInp.Text = Convert.ToString(sumTotal);
+
+                    //total answer after for loop must go here
+                    userInp.Text = Convert.ToString(sumTotal);
+                }
+                catch
+                {
+                    userInp.Text = "Error";
+                    headInp.Text = "";
+                    status = "er";
+                    temp = "";
+                }
 
             }
 
@@ -226,7 +263,7 @@ namespace Assignment1Calculator
             userInp.Text = "";
             headInp.Text = "";
             status = "";
-            temp = ""; 
+            temp = "";
         }
 
         private void Invert_Click(object sender, RoutedEventArgs e)
@@ -252,18 +289,38 @@ namespace Assignment1Calculator
         {
             //maybe check if status is  '=', if so then behave differently to fix decimal problem?
 
-           if (userInp.Text.Length == 0)
-           {
-               userInp.Text = "0.";
-           }
-           else if (userInp.Text.Contains("."))
-           {
-           }
-    
-           else
-           {
-               userInp.Text = userInp.Text + ".";
-           }
+            if (userInp.Text.Length == 0)
+            {
+                userInp.Text = "0.";
+            }
+
+            //this fixes decimal issues after you have pressed = already
+            else if (status == "=")
+            {
+                userInp.Text = "0.";
+                status = "";
+                return;
+
+            }
+            else if (userInp.Text.Contains("."))
+            {
+            }
+
+            else //if (status != "")
+            {
+                userInp.Text = "";
+                status = "";
+                userInp.Text = userInp.Text + "0.";
+            }
+            //userInp.Text = userInp.Text + "0.";
+
+            //else
+            //{
+            //    userInp.Text = "";
+            //    status = "";
+            //    userInp.Text = userInp.Text + ".";
+
+            //}
         }
     }
 }
