@@ -26,19 +26,19 @@ namespace Assignment1Calculator
     public sealed partial class MainPage : Page
     {
         //last clicked operator
-        String status = "";
+        private String _status = "";
 
         // temporary storage 
-        String temp = "";
+        private String _temp = "";
 
         //writing functions up here because its easier
 
         public void OnNumClick(string num)
-        {   //the if status check will check if there is an operator in queue and if so, it will clear input and status
-            if (status != "")
+        {   //the if _status check will check if there is an operator in queue and if so, it will clear input and _status
+            if (_status != "")
             {
                 userInp.Text = "";
-                status = "";
+                _status = "";
             }
             userInp.Text = userInp.Text + num;
         }
@@ -47,15 +47,21 @@ namespace Assignment1Calculator
         {
             String[] lencheck = headInp.Text.Split(' ');
             //if (userInp.Text == "Cannot divide by zero"|| userInp.Text =="Error")
-            if (status == "er")
+            if (_status == "er")
             {
 
             }
+            
             else if (lencheck.Length > 1)
             {
                 headInp.Text = $"{headInp.Text} {userInp.Text} {Operator}";
-                status = "-";
+                _status = "-";
             }
+
+            /*else if (_status != "")
+            {
+
+            }*/
             else
             {
                 // creating a end decimal checker/remover
@@ -65,10 +71,10 @@ namespace Assignment1Calculator
                     // cutt off the decimal
                     userInp.Text = userInp.Text.TrimEnd('.');
                 }
-                temp = userInp.Text + $" {Operator}";
-                headInp.Text += temp;
-                status = Operator;
-                //temp = "";
+                _temp = userInp.Text + $" {Operator}";
+                headInp.Text += _temp;
+                _status = Operator;
+                //_temp = "";
             }
         }
 
@@ -159,7 +165,7 @@ namespace Assignment1Calculator
         // the Equals_Click function could be partially refactored but I think its totally extra and wont accomplish much
         private void Equals_Click(object sender, RoutedEventArgs e)
         {
-            if (status == "=")
+            if (_status == "=")
             {
             }
             else if (headInp.Text.Split(' ').Length == 1)
@@ -204,7 +210,7 @@ namespace Assignment1Calculator
                             {
                                 userInp.Text = "Cannot divide by zero";
                                 headInp.Text = "";
-                                status = "er";
+                                _status = "er";
                                 return;
                             }
                             else
@@ -230,16 +236,16 @@ namespace Assignment1Calculator
                     // catches size errors, others are accounted for elsewhere
                     userInp.Text = "Error";
                     headInp.Text = "";
-                    status = "er";
-                    temp = "";
+                    _status = "er";
+                    _temp = "";
                     return;
                 }
 
             }
 
-            //resets the head text and sets correct status after calculations are done
+            //resets the head text and sets correct _status after calculations are done
             headInp.Text = "";
-            status = "=";
+            _status = "=";
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
@@ -254,8 +260,8 @@ namespace Assignment1Calculator
         {
             userInp.Text = "";
             headInp.Text = "";
-            status = "";
-            temp = "";
+            _status = "";
+            _temp = "";
         }
 
         private void Invert_Click(object sender, RoutedEventArgs e)
@@ -285,23 +291,36 @@ namespace Assignment1Calculator
             }
 
             //this fixes decimal issues after you have pressed = already
-            else if (status == "=")
+            else if (_status == "=")
             {
                 userInp.Text = "0.";
-                status = "";
+                _status = "";
                 return;
 
+            }
+
+            //makes sure new decimals after an operator start with 0. also
+            else if (_status != "")
+            {
+                userInp.Text = "0.";
+                _status = "";
             }
             else if (userInp.Text.Contains("."))
             {
             }
 
-            //makes sure new decimals after an operator start with 0. also
+            /*//makes sure new decimals after an operator start with 0. also
+            else if (_status != "")
+            {
+                userInp.Text = "0.";
+                _status = "";
+            }*/
+
             else 
             {
-                userInp.Text = "";
-                status = "";
-                userInp.Text = userInp.Text + "0.";
+                //userInp.Text = ""; commenting this out breaks 9/.3 makes it 9/9.3, fixes regular input
+                _status = "";
+                userInp.Text = userInp.Text + ".";
             }
 
         }
