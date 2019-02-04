@@ -57,11 +57,7 @@ namespace Assignment1Calculator
                 headInp.Text = $"{headInp.Text} {userInp.Text} {Operator}";
                 _status = "-";
             }
-
-            /*else if (_status != "")
-            {
-
-            }*/
+            
             else
             {
                 // creating a end decimal checker/remover
