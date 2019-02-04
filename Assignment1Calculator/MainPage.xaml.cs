@@ -31,8 +31,6 @@ namespace Assignment1Calculator
         // temporary storage 
         String temp = "";
 
-        //private bool Decimal = false;
-
         //writing functions up here because its easier
 
         public void OnNumClick(string num)
@@ -48,7 +46,8 @@ namespace Assignment1Calculator
         public void OnOperatorClick(string Operator)
         {
             String[] lencheck = headInp.Text.Split(' ');
-            if (userInp.Text == "Cannot divide by zero"|| userInp.Text =="Error")
+            //if (userInp.Text == "Cannot divide by zero"|| userInp.Text =="Error")
+            if (status == "er")
             {
 
             }
@@ -200,7 +199,7 @@ namespace Assignment1Calculator
                         else if (fullStringCollection[i] == "/")
                         {
                             Decimal tempNum2 = Convert.ToDecimal(fullStringCollection[i + 1]);
-                            // can add a divide by 0 check
+                            //divide by 0 check
                             if (tempNum2 == 0)
                             {
                                 userInp.Text = "Cannot divide by zero";
@@ -216,19 +215,10 @@ namespace Assignment1Calculator
 
                         else if (fullStringCollection[i] == "*")
                         {
-                            //try
-                            //{
+                            
                             Decimal tempNum2 = Convert.ToDecimal(fullStringCollection[i + 1]);
                             sumTotal = sumTotal * tempNum2;
-                            //}
-                            //catch
-                            //{
-                            //    userInp.Text = "Error";
-                            //    headInp.Text = "";
-                            //    status = "er";
-                            //    temp = "";
-
-                            //}
+                          
                         }
                     }
 
@@ -237,10 +227,12 @@ namespace Assignment1Calculator
                 }
                 catch
                 {
+                    // catches size errors, others are accounted for elsewhere
                     userInp.Text = "Error";
                     headInp.Text = "";
                     status = "er";
                     temp = "";
+                    return;
                 }
 
             }
@@ -287,8 +279,6 @@ namespace Assignment1Calculator
 
         private void Deciaml_Click(object sender, RoutedEventArgs e)
         {
-            //maybe check if status is  '=', if so then behave differently to fix decimal problem?
-
             if (userInp.Text.Length == 0)
             {
                 userInp.Text = "0.";
@@ -306,21 +296,14 @@ namespace Assignment1Calculator
             {
             }
 
-            else //if (status != "")
+            //makes sure new decimals after an operator start with 0. also
+            else 
             {
                 userInp.Text = "";
                 status = "";
                 userInp.Text = userInp.Text + "0.";
             }
-            //userInp.Text = userInp.Text + "0.";
 
-            //else
-            //{
-            //    userInp.Text = "";
-            //    status = "";
-            //    userInp.Text = userInp.Text + ".";
-
-            //}
         }
     }
 }
