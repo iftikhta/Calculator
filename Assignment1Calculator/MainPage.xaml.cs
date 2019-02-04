@@ -73,11 +73,6 @@ namespace Assignment1Calculator
             
         }
 
-        private void TextBlock_SelectionChanged(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void One_Click(object sender, RoutedEventArgs e)
         {
             OnNumClick("1");
@@ -96,7 +91,6 @@ namespace Assignment1Calculator
         private void Four_Click(object sender, RoutedEventArgs e)
         {
             OnNumClick("4");
-
         }
 
         private void Five_Click(object sender, RoutedEventArgs e)
@@ -136,13 +130,9 @@ namespace Assignment1Calculator
             OnOperatorClick("/");
         }
 
-        private void FullClear_Click(object sender, RoutedEventArgs e)
+        private void Clear_Click(object sender, RoutedEventArgs e)
         {
             userInp.Text = "";
-            headInp.Text = "";
-            status = "";
-            temp = "";
-
         }
 
         private void Subtract_Click(object sender, RoutedEventArgs e)
@@ -165,8 +155,6 @@ namespace Assignment1Calculator
         {
             if (status == "=")
             {
-         
-
             }
             else if (headInp.Text.Split(' ').Length == 1) 
             {
@@ -204,6 +192,8 @@ namespace Assignment1Calculator
                         else if (fullStringCollection[i] == "/")
                         {
                             Decimal tempNum2 = Convert.ToDecimal(fullStringCollection[i + 1]);
+                            // can add a divide by 0 check
+                            
                             sumTotal = sumTotal / tempNum2;
                         }
 
@@ -231,9 +221,12 @@ namespace Assignment1Calculator
             }
         }
 
-        private void Clear_Click(object sender, RoutedEventArgs e)
+        private void FullClear_Click(object sender, RoutedEventArgs e)
         {
             userInp.Text = "";
+            headInp.Text = "";
+            status = "";
+            temp = ""; 
         }
 
         private void Invert_Click(object sender, RoutedEventArgs e)
@@ -257,14 +250,14 @@ namespace Assignment1Calculator
 
         private void Deciaml_Click(object sender, RoutedEventArgs e)
         {
+            //maybe check if status is  '=', if so then behave differently to fix decimal problem?
 
            if (userInp.Text.Length == 0)
            {
                userInp.Text = "0.";
            }
-           else if (userInp.Text.EndsWith("."))
+           else if (userInp.Text.Contains("."))
            {
-
            }
     
            else
